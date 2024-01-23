@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<
+<style>
+    #header {
+        background-color: black;
+    }
+</style>
+<body id="exhibit-body">
+
+    <main id="main">
+        <section id="about">
+            <div class="container">
+
+                <header class="section-header">
+                    <h3>Manage Your Account</h3>
+                </header>
+
+                <div>
+                    <h4>Change your account settings</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <partial name="_ManageNav" />
+                        </div>
+                        <div class="col-md-9">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+
+                @section Scripts {
+                    @RenderSection("Scripts", required: false)
+                }
+</div>
+            </section>
+</main>
+</body>

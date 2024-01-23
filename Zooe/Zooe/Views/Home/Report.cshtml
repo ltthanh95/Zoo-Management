@@ -1,0 +1,176 @@
+@model IEnumerable<Zooe.Models.ReportModel>
+@{
+    ViewData["Title"] = "Report";
+    Layout = "_Layout";
+}
+
+<html>
+<style>
+    #header {
+        background-color: black;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #000000;
+        text-align: center;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .style {
+        margin-left: 50px;
+    }
+</style>
+
+<body id="exhibit-body">
+    <main id="main">
+        <section id="about">
+            <div class="container">
+
+                <header class="section-header">
+                    <h3>Sale Report</h3>
+                </header>
+                <form method="post">
+                    <div class="style">
+                        <label for="start">Start date:</label>
+
+                        <input style="background-color:#f8f9fa " type="date" id="linput" name="linput"
+                               value="" />
+                    </div>
+
+                    <div class="style">
+                        <label for="end">End date:</label>
+
+                        <input type="date" id="rinput" name="rinput"
+                               value="" />
+                    </div>
+                    <button class="btn btn-primary btn-sm style" onsubmit="">Submit</button>
+                </form>
+
+                <table class="container">
+
+                    @{ int i = 0;}
+                    @foreach (var item in Model)
+                    {
+                        if ((Html.DisplayTextFor(modelitem => item.TransactionId)).ToString() != "-1")
+                        {
+                            if (i == 0)
+                            {
+                                <tr>
+                                    <td colspan="2">
+                                        @if (item == Model.First())
+                                        {
+                                            <p>Average Cost of Purchases: <b>@Html.DisplayTextFor(modelitem => item.TransactionId)</b></p>
+                                        }
+                                        else
+                                        {@Html.DisplayTextFor(modelitem => item.TransactionId)}
+                                    </td>
+                                    <td colspan="2">
+                                        @if (item == Model.First())
+                                        {
+                                            <p>Total Number of Transactions: <b>@Html.DisplayTextFor(modelitem => item.ItemId)</b> </p>}
+                                        else
+                                        {@Html.DisplayTextFor(modelitem => item.ItemId)}
+                                    </td>
+                                    <td colspan="2">
+                                        @if (item == Model.First())
+                                        {
+                                            <p> Total Number of Stock Sold:<b>@Html.DisplayTextFor(modelitem => item.CustomerId)</b>  </p> }
+                                        else
+                                        {@Html.DisplayTextFor(modelitem => item.CustomerId)}
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+
+                                @if (i == 1)
+                                {
+                                    <tr>
+                                        <td>
+                                            TransactionID
+                                        </td>
+                                        <td>
+                                            ItemID
+                                        </td>
+                                        <td>
+                                            CustomerID
+                                        </td>
+                                        <td>
+                                            Total Cost
+                                        </td>
+                                        <td>
+                                            Purchase Date
+                                        </td>
+                                        <td>
+                                            Quantity
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td>
+                                        @if (item == Model.First())
+                                        {
+                                            <p>Average Cost of Purchases: <b>@Html.DisplayTextFor(modelitem => item.TransactionId)</b></p>
+                                        }
+                                        else
+                                        {@Html.DisplayTextFor(modelitem => item.TransactionId)}
+                                    </td>
+                                    <td>
+                                        @if (item == Model.First())
+                                        {
+                                            <p>Total Number of Transactions: <b>@Html.DisplayTextFor(modelitem => item.ItemId)</b> </p>}
+                                        else
+                                        {@Html.DisplayTextFor(modelitem => item.ItemId)}
+                                    </td>
+                                    <td>
+                                        @if (item == Model.First())
+                                        {
+                                            <p> Total Number of Stock Sold: <b>@Html.DisplayTextFor(modelitem => item.CustomerId) </b></p> }
+                                        else
+                                        {@Html.DisplayTextFor(modelitem => item.CustomerId)}
+                                    </td>
+
+                                    <td>
+                                        @if ((Html.DisplayTextFor(modelitem => item.Quantity)).ToString() != "0")
+                                        {
+                                            @Html.DisplayTextFor(modelitem => item.TotalCost)}
+                                        else { }
+                                    </td>
+                                    <td>
+                                        @if ((Html.DisplayTextFor(modelitem => item.Quantity)).ToString() != "0")
+                                        {
+                                            @Html.DisplayTextFor(modelitem => item.PurchaseDate)}
+                                        else { }
+                                    </td>
+                                    <td>
+                                        @if ((Html.DisplayTextFor(modelitem => item.Quantity)).ToString() != "0")
+                                        {
+                                            @Html.DisplayTextFor(modelitem => item.Quantity)}
+                                        else { }
+                                    </td>
+                                </tr>
+                            }
+                            { i++; }
+                        }
+                        else
+                        {
+                            <p>Given dates resulted in an empty report.</p>
+}
+                    }
+
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

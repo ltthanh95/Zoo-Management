@@ -1,0 +1,294 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "TicketIndex";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .quantity {
+        margin-top: 10px;
+        margin-left: 30px;
+    }
+
+    #modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        top: 0;
+        left: 0;
+        z-index: 998;
+        padding: 100px 0;
+    }
+
+    #transaction_modal {
+        width: 900px;
+        height: 700px;
+        background: white;
+        margin: 0 auto;
+        border-radius: 25px;
+    }
+
+    .show {
+        display: block !important;
+    }
+</style>
+<body style="background-color:#949085">
+    <section class="container">
+        <h1 style="text-align:center;margin-top:100px">Tickets</h1>
+        <div class="row">
+
+
+            <article class="card fl-left">
+                <section class="date">
+                    <time datetime="23th feb">
+                        <span>Kids</span><span>Ticket</span>
+                        <span class="quantity" style="margin-top: 10px;margin-left: 30px;">
+                            <input id="kidTicket" type="number" value="0" min="0" max="10" step="1" />
+                        </span>
+                        <span style="margin-top: 10px;" id="price2">$17.99</span>
+                    </time>
+                </section>
+                <section class="card-cont">
+                    <small>Welcome to</small>
+                    <h3>Zoo</h3>
+                    <div class="even-date">
+                        <i class="fa fa-calendar"></i>
+                        <time>
+                            <span></span>
+                            <span></span>
+                        </time>
+                    </div>
+                    <div class="even-info">
+                        <i class="fa fa-map-marker"></i>
+                        <p>
+                            Save $15 when you buy online and visit Zoo for one day.
+                        </p>
+                    </div>
+                    <a href="#">tickets</a>
+                </section>
+            </article>
+
+            <article class="card fl-left">
+                <section class="date">
+                    <time datetime="23th feb">
+                        <span>Adults</span><span>Ticket</span>
+                        <span class="quantity" style="margin-top: 10px;margin-left: 30px;">
+                            <input id="adultTicket" type="number" value="0" min="0" max="10" step="1" />
+
+                        </span>
+                        <span style="margin-top: 10px;" id="price1">$20.99</span>
+
+                    </time>
+                </section>
+                <section class="card-cont">
+                    <small>Welcome to</small>
+                    <h3>Zoo</h3>
+                    <div class="even-date">
+                        <i class="fa fa-calendar"></i>
+                        <time>
+                            <span></span>
+                            <span></span>
+                        </time>
+                    </div>
+                    <div class="even-info">
+                        <i class="fa fa-map-marker"></i>
+                        <p>
+                            Save $15 when you buy online and visit Zoo for one day.
+                        </p>
+                    </div>
+                    <a href="#">tickets</a>
+                </section>
+            </article>
+        </div>
+
+        <div class="row">
+            <article class="card fl-left">
+                <section class="date">
+                    <time datetime="23th feb">
+                        <span>Family</span><span>Ticket</span>
+                        <span class="quantity" style="margin-top: 10px;margin-left: 30px;">
+                            <input id="familyTicket" type="number" value="0" min="0" max="10" step="1" />
+                        </span>
+                        <span style="margin-top: 10px;" id="price3">$40.99</span>
+                    </time>
+                </section>
+                <section class="card-cont">
+                    <small>Welcome to</small>
+                    <h3>Zoo</h3>
+                    <div class="even-date">
+                        <i class="fa fa-calendar"></i>
+                        <time>
+                            <span></span>
+                            <span></span>
+                        </time>
+                    </div>
+                    <div class="even-info">
+                        <i class="fa fa-map-marker"></i>
+                        <p>
+                            Save $15 when you buy online and visit Zoo for one day.
+                        </p>
+                    </div>
+                    <a href="#">booked</a>
+                </section>
+            </article>
+
+            <article class="card fl-left">
+                <section class="date">
+                    <time datetime="23th feb">
+                        <span>Special</span><span>Ticket</span>
+                        <span class="quantity" style="margin-top: 10px;margin-left: 30px;">
+                            <input id="specialTicket" type="number" value="0" min="0" max="10" step="1" />
+                        </span>
+                        <span style="margin-top: 10px;" id="price4">$60.99</span>
+                    </time>
+                </section>
+                <section class="card-cont">
+                    <small>Welcome to</small>
+                    <h3>Zoo</h3>
+                    <div class="even-date">
+                        <i class="fa fa-calendar"></i>
+                        <time>
+                            <span></span>
+                            <span></span>
+                        </time>
+                    </div>
+                    <div class="even-info">
+                        <i class="fa fa-map-marker"></i>
+                        <p>
+                            Save $15 when you buy online and visit Zoo for one day.
+                        </p>
+                    </div>
+                    <a href="#">cancel</a>
+
+                </section>
+            </article>
+        </div>
+        <div id="modal">
+            <div id="transaction_modal">
+                <div id="cart" style="border-bottom:1px solid black">
+                    <h1 style="text-align:center">Check Out</h1>
+                </div>
+                <div id="order_summary">
+                    <p style="text-align:center">Order Summary</p>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <p id="adultOutput"></p>
+                        </div>
+                        <div class="col">
+                            <p id="total1"></p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p id="kidOutput"></p>
+                        </div>
+                        <div class="col">
+                            <p id="total2"></p>
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p id="adultOutput"></p>
+                            </div>
+                            <div class="col">
+                                <p id="total1"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p id="familyOutput"></p>
+                            </div>
+                            <div class="col">
+                                <p id="total3"></p>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <p id="specialOutput"></p>
+                            </div>
+                            <div class="col" style="border-bottom:1px solid black">
+                                <p id="total4"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h4>Total:</h4>
+                            </div>
+                            <div class="col">
+                                <p id="total5"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-primary btn-sm" onclick="showModal()">Cancel</button>
+                            </div>
+
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <div class="col">
+                                    <a class="btn btn-primary" href="@Url.Action("Card", "Home")" role="button">Check Out</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col">
+                                    <a asp-area="Identity" asp-page="/Account/Login">Sign In</a><p>to Check Out</p>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+        <button style="left:900px;" class="bbtn btn-primary btn-lg" onclick="showModal()">Book Now</button>
+    </section>
+    <script>
+        showModal = () => {
+            let type1, type2, type3, type4;
+            var price1, price2, price3, price4;
+            type1 = document.getElementById("adultTicket").value;
+            price1 = parseFloat(document.getElementById("price1").innerHTML.toString().slice(1));
+
+            type2 = document.getElementById("kidTicket").value;
+            price2 = parseFloat(document.getElementById("price2").innerHTML.toString().slice(1));
+
+            type3 = document.getElementById("familyTicket").value;
+            price3 = parseFloat(document.getElementById("price3").innerHTML.toString().slice(1));
+
+            type4 = document.getElementById("specialTicket").value;
+            price4 = parseFloat(document.getElementById("price4").innerHTML.toString().slice(1));
+
+            var total = (type1 * price1) + (type2 * price2) + (type3 * price3) + (type4 * price4);
+
+            document.getElementById("adultOutput").innerHTML = "Adult Express Ticket: " + type1 + "x$" + price1;
+            document.getElementById("total1").innerHTML = "$" + type1 * price1;
+            document.getElementById("kidOutput").innerHTML = "Kid Express Ticket: " + type2 + "x$" + price2;
+            document.getElementById("total2").innerHTML = "$" + type2 * price2;
+            document.getElementById("familyOutput").innerHTML = "Family Express Ticket: " + type3 + "x$" + price3;
+            document.getElementById("total3").innerHTML = "$" + type3 * price3;
+            document.getElementById("specialOutput").innerHTML = "Special Express Ticket: " + type4 + "x$" + price4;
+            document.getElementById("total4").innerHTML = "$" + type4 * price4;
+            document.getElementById("total4").innerHTML = "$" + type4 * price4;
+            document.getElementById("total5").innerHTML = "$" + total;
+            document.getElementById("modal").classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

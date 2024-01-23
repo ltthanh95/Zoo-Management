@@ -1,0 +1,45 @@
+@model Zooe.ViewModels.CreateRoleViewModel
+
+@{
+    ViewBag.Title = "Create New Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #header {
+        background-color: black;
+    }
+</style>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>title</title>
+</head>
+<body>
+<header class="section-header" style="margin-top: 100px">
+    <h3>Create a Role</h3>
+</header>
+
+<div class="row">
+    <div class="col-md-4" style="margin:auto">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="RoleName">Role Name</label>
+                <input asp-for="RoleName" class="form-control"/>
+                <span asp-validation-for="RoleName" class="text-danager"></span>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create Role</button>
+                <a asp-action="ListRoles" class="btn btn-danger">Back to List</a>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

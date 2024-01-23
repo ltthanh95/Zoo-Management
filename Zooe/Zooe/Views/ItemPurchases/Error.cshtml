@@ -1,0 +1,13 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+    if (ViewData["Amount"] is null)
+    {
+        ViewData["Amount"] = 0;
+    }
+    Layout = null;
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">There is not enough stock for that item(@ViewData["Amount"] in stock)</h2>
+<a href="javascript:history.back(-1)">Go back</a>

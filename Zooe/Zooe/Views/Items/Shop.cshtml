@@ -1,0 +1,286 @@
+﻿
+
+
+@model IEnumerable<Zooe.Team10.Items>
+
+@{
+    ViewData["Title"] = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<style>
+    img {
+        width: 340px;
+        height: 255px;
+    }
+
+    h4 {
+        text-align: center;
+    }
+
+    .price {
+        text-align: center;
+    }
+
+    .zoom {
+        padding: 50px;
+        transition: transform .2s; /* Animation */
+        width: 400px;
+        height: 300px;
+        margin: 0 auto;
+    }
+    .show{
+        display:block !important;
+    }
+    .sort{
+        display: none;
+    }
+        .zoom:hover {
+            transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+</style>
+
+
+<body>
+    <section id="intro">
+        <div class="intro-container">
+            <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+
+                <ol class="carousel-indicators"></ol>
+
+                <div class="carousel-inner" role="listbox">
+
+                    <div class="carousel-item active">
+                        <div class="carousel-background"><img src="~/Content/img/cafe.jpg" alt=""></div>
+                        <div class="carousel-container">
+                            <div class="carousel-caption">
+                                <h2>Zoo Shop</h2>
+                                <p>Take a look at the various Zoo products we have for sale!</p>
+                                <a class="btn-get-started scrollto" href="@Url.Action("Index", "Home")">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="carousel-background"><img src="~/Content/img/food.jpg" alt=""></div>
+                        <div class="carousel-container">
+                            <div class="carousel-caption">
+                                <h2>Recreation Plushies</h2>
+                                <p>Get a little Riot to take home!</p>
+                                <a class="btn-get-started scrollto" href="@Url.Action("Index", "Home")">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </div>
+    </section><!-- End Intro Section -->
+
+    <main>
+
+
+        <!-- Category Area Start-->
+        <section class="category-area section-padding30">
+            <div class="container-fluid">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        
+                        <form class="form-inline my-2 my-lg-0" method="POST">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+
+                    </div>
+                </nav>
+
+
+
+
+
+
+
+                <!-- Section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center mb-85">
+                            <h2>Shop by Category</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Shop","Items") ">
+                                <div class="category-img figure">
+                                    <img src="@Url.Content("~/Content/assets_store/img/categori/Food.jpg")" class="figure-img img-fluid rounded" alt=" ">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Food</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Sourvenirs","Home")">
+                                <div class="category-img text-center">
+                                    <img src="@Url.Content("~/Content/assets_store/img/categori/toy.jpg")" style="height:376.41px" alt="">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Souvenirs</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Shop","GiftShops")">
+                                <div class="category-img text-center">
+                                    <img src="@Url.Content("~/Content/cafe.jpg")" style="height:376px" alt="">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Cafe</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Category Area End-->
+        <!-- Latest Products Start -->
+        <section class="latest-product-area padding-bottom">
+            <div class="container">
+                <div class="row product-btn d-flex justify-content-end align-items-end">
+                    <!-- Section Tittle -->
+                    <div class="col-xl-4 col-lg-5 col-md-5" id="scroll">
+                        <div class="section-tittle mb-30">
+                            <h2>Menu</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-8 col-lg-7 col-md-7">
+                        <div class="properties__button f-right">
+                            <!--Nav Button  -->
+                            <div id="myBtnContainer">
+                                <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+                                <button class="btn" onclick="filterSelection('Salad')"> Salad</button>
+                                <button class="btn" onclick="filterSelection('Wrap')"> Wrap</button>
+                                <button class="btn" onclick="filterSelection('Sandwich')"> Sandwich</button>
+                                <button class="btn" onclick="filterSelection('Water')"> Water</button>
+                            </div>
+                          
+                            <!--End Nav Button  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Nav Card -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- card one -->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-xl-4 col-lg-4 col-md-6 sort @Html.DisplayFor(modelItem=>item.Title)">
+                                    <div class="single-product mb-60">
+                                        <div class="product-img">
+                                            <img src="@Html.DisplayFor(modelItem=>item.ImageUrl)" 
+                                                 alt="@Html.DisplayFor(modelItem=>item.Title)" 
+                                                 class="zoom ">
+
+                                        </div>
+                                        <div class="product-caption">
+
+                                            <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+
+                                            <div class="price">
+                                                <ul>
+                                                    <li>@Html.DisplayFor(modelItem => item.Price)</li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function filterSelection(c) {
+                        var x, i;
+                        x = document.getElementsByClassName("sort");
+                        if (c == "all") c = "";
+                        
+                        for (i = 0; i < x.length; i++) {
+                            x[i].classList.remove("class", "show");
+                            if (x[i].className.indexOf(c) > -1) x[i].classList.add("class", "show");
+                        }
+                    }
+                    filterSelection('all');
+                    //function filterSelection(c) {
+                        
+                    //}
+
+                    //function w3AddClass(element, name) {
+                    //    var i, arr1, arr2;
+                    //    arr1 = element.className.split(" ");
+                    //    arr2 = name.split(" ");
+                    //    for (i = 0; i < arr2.length; i++) {
+                    //        if (arr1.indexOf(arr2[i]) == -1) {
+                    //            element.className += " " + arr2[i];
+                    //        }
+                    //    }
+                    //}
+
+                    //function w3RemoveClass(element, name) {
+                    //    var i, arr1, arr2;
+                    //    arr1 = element.className.split(" ");
+                    //    arr2 = name.split(" ");
+                    //    for (i = 0; i < arr2.length; i++) {
+                    //        while (arr1.indexOf(arr2[i]) > -1) {
+                    //            arr1.splice(arr1.indexOf(arr2[i]), 1);
+                    //        }
+                    //    }
+                    //    element.className = arr1.join(" ");
+                    //}
+                    //var btnContainer = document.getElementById("myBtnContainer");
+                    //var btns = btnContainer.getElementsByClassName("btn");
+                    //for (var i = 0; i < btns.length; i++) {
+                    //    btns[i].addEventListener("click", function () {
+                    //        var current = document.getElementsByClassName("active");
+                    //        current[0].className = current[0].className.replace(" active", "");
+                    //        this.className += " active";
+                    //    });
+                    //filterSelection("all") // Execute the function and show all columns
+                </script>
+            </div>
+        </section>
+        <!-- Latest Products End -->
+        <!-- Best Product Start -->
+
+
+    </main>
+</body>
+

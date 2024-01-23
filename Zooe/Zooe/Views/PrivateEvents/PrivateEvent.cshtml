@@ -1,0 +1,270 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "PrivateEvent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Title</title>
+</head>
+<style>
+
+    #header {
+        background-color: black;
+    }
+    #modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        top: 0;
+        left: 0;
+        z-index: 998;
+        padding: 100px 0;
+    }
+
+    #transaction_modal {
+        width: 1100px;
+        height: 700px;
+        background: white;
+        margin: 0 auto;
+        border-radius: 25px;
+    }
+
+    .show {
+        display: block !important;
+    }
+    #about::before{
+        z-index: -1;
+    }
+    
+</style>
+<body id="exhibit-body">
+
+    <main id="main">
+        <section id="about">
+            <div class="container">
+
+                <header class="section-header">
+                    <h3>Host An Event</h3>
+                </header>
+
+                <div class="row about-cols">
+
+                    <!--start loop-->
+                    <!-- wwwroot => style.css & wwwroot=> ticket=>ticket.css .row-->
+
+                    <div class="exhibit-col-md-4 cold-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="exhibit-col about-col" style="width:320px;height:536px">
+                            <div class="exhibit-img">
+                                <img style="width:320px;height:200px" src="~/Content/img/Wedding.jpg" class="img-fluid thumbnail zoom">
+                                <div class="overlay">Up to 60 Guests</div>
+                            </div>
+                            <h2 class="title">Wedding</h2>
+                            <p class="exhibit-p" style="font-family: 'Dancing Script', cursive;">
+                                Looking for a stunning backdrop for your special day? From intimate to extravagant,
+                                the Houston Zoo offers iconic venues with elegant atmospheres and natural ambiance for an unforgettable wedding reception
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="exhibit-col-md-4 cold-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="exhibit-col about-col" style="width:320px;height:536px">
+                            <div class="exhibit-img">
+                                <img style="width:320px;height:200px" src="~/Content/img/birthday.jpg" class="img-fluid thumbnail zoom">
+                                <div class="overlay">Up to 60 Guests</div>
+                            </div>
+                            <h2 class="title">Birthday</h2>
+                            <p class="exhibit-p" style="font-family: 'Dancing Script', cursive;">
+                                Treat your guests to a birthday celebration that is one of a kind.
+                                Your guests will enjoy a private event venue and experience the brilliant displays of colorful lights and festive holiday music as they stroll throughout the Zoo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="exhibit-col-md-4 cold-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="exhibit-col about-col" style="width:320px;height:536px">
+                            <div class="exhibit-img">
+                                <img style="width:320px;height:200px" src="~/Content/img/picnic.jpg" class="img-fluid thumbnail zoom">
+                                <div class="overlay">Up to 60 Guests</div>
+                            </div>
+                            <h2 class="title">Picnic</h2>
+                            <p class="exhibit-p" style="font-family: 'Dancing Script', cursive;">
+                                Every day the Houston Zoo manages a herd of 6000 exotic animal species—so just imagine what we can do for your 100 to 2000 employees! Our event specialists will help make your next company picnic a smart,
+                                fun and inspiring experience.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="exhibit-col-md-4 cold-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="exhibit-col about-col" style="width:320px;height:536px">
+                            <div class="exhibit-img">
+                                <img style="width:320px;height:200px" src="~/Content/img/event.jpg" class="img-fluid thumbnail zoom">
+                                <div class="overlay">Up to 60 Guests</div>
+                            </div>
+                            <h2 class="title">Meeting</h2>
+                            <p class="exhibit-p" style="font-family: 'Dancing Script', cursive;">
+                                Looking to get out of the office or company conference room? Wanting to gather your pack for a corporate happy hour, team-building activity, or employee appreciation dinner?
+                                The Houston Zoo offers unique gathering spaces where groups, large and small, can have interactive and memorable events with colleagues.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--Book event-->
+            @* <div id="modal">
+                <div id="transaction_modal">
+                    <div id="cart" style="border-bottom:1px solid black">
+                        <h1 style="text-align:center">Booking</h1>
+                    </div>
+                    <form style="margin:50px;" method="post">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">First Name</label>
+                                <input type="Text" class="form-control" id="inputEmail4" placeholder="First Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Last Name</label>
+                                <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Date</label>
+                            <input type="date" class="form-control" id="inputAddress" placeholder="Date">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Design</label>
+                                <textarea type="text" class="form-control" id="inputCity"></textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Events</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Wedding</option>
+                                    <option>Birthday</option>
+                                    <option>Picnic</option>
+                                    <option>Meeting</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Capacity</label>
+                                <input type="text" class="form-control" id="inputZip" placeholder="Maximum 60 guests">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-primary btn-sm" onclick="showModal()">Cancel</button>
+                            </div>
+
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <div class="col">
+                                    <a class="btn btn-primary" href="#" role="button">Book</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col">
+                                    <a asp-area="Identity" asp-page="/Account/Login">Sign In</a><p>to Book</p>
+                                </div>
+                            }
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" onclick="showModal()">Book Now</button>*@
+        </section><!-- End About Us Section -->
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="section-bg wow fadeInUp" style="background-color:#fff">
+            <div class="container">
+
+                <div class="section-header">
+                    <h3>Contact Us</h3>
+                    <p>Questions or recommendations? Let us know!</p>
+                </div>
+
+                <div class="row contact-info">
+
+                    <div class="col-md-4">
+                        <div class="contact-address">
+                            <i class="ion-ios-location-outline"></i>
+                            <h3>Address</h3>
+                            <address>6200 Hermann Park Dr, Houston, TX 77030</address>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-phone">
+                            <i class="ion-ios-telephone-outline"></i>
+                            <h3>Phone Number</h3>
+                            <p><a href="tel:+1713-533-6500.">+1 713-533-6500</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="contact-email">
+                            <i class="ion-ios-email-outline"></i>
+                            <h3>Email</h3>
+                            <p><a href="mailto:Zoo@Info.com">Zoo@Info.com</a></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form">
+                    <form action="Content/forms/contact.php" method="post" role="form" class="php-email-form">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validate"></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                            <div class="validate"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validate"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div>
+            </div>
+        </section><!-- End Contact Section -->
+    </main>
+    @*<script>
+            showModal = () => {
+
+                document.getElementById("modal").classList.toggle('show');
+            }
+
+        </script>*@
+
+</body>
+</html>
+
+
+

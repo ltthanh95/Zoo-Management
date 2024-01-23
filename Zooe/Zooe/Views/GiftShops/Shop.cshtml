@@ -1,0 +1,179 @@
+﻿@model IEnumerable<Zooe.Team10.GiftShop>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<body>
+    <section id="intro">
+        <div class="intro-container">
+            <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+
+                <ol class="carousel-indicators"></ol>
+
+                <div class="carousel-inner" role="listbox">
+
+                    <div class="carousel-item active">
+                        <div class="carousel-background"><img src="~/Content/img/cafe.jpg" alt=""></div>
+                        <div class="carousel-container">
+                            <div class="carousel-caption">
+                                <h2>Zoo Shop</h2>
+                                <p>Take a look at the various Zoo products we have for sale!</p>
+                                <a class="btn-get-started scrollto" href="@Url.Action("Shop", "GiftShops")">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="carousel-background"><img src="~/Content/img/food.jpg" alt=""></div>
+                        <div class="carousel-container">
+                            <div class="carousel-caption">
+                                <h2>Recreation Plushies</h2>
+                                <p>Get a little Riot to take home!</p>
+                                <a class="btn-get-started scrollto" href="@Url.Action("Shop", "Items")">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+
+                <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </div>
+    </section><!-- End Intro Section -->
+
+    <main>
+
+
+        <!-- Category Area Start-->
+        <section class="category-area section-padding30">
+            <div class="container-fluid">
+
+                
+
+
+
+
+
+
+
+                <!-- Section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center mb-85">
+                            <h2>Shop by Category</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Shop","Items") ">
+                                <div class="category-img figure">
+                                    <img src="@Url.Content("~/Content/assets_store/img/categori/Food.jpg")" class="figure-img img-fluid rounded" alt=" ">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Food</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Sourvenirs","Home")">
+                                <div class="category-img text-center">
+                                    <img src="@Url.Content("~/Content/assets_store/img/categori/toy.jpg")" alt="">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Souvenirs</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Shop","GiftShops")">
+                                <div class="category-img text-center">
+                                    <img src="@Url.Content("~/Content/cafe.jpg")" style="height:376px" alt="">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Cafe</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Category Area End-->
+        <!-- Latest Products Start -->
+        <!-- Latest Products End -->
+        <!-- Best Product Start -->
+        <section class="latest-product-area padding-bottom">
+            <div class="container">
+                <div class="row product-btn d-flex justify-content-end align-items-end">
+                    <!-- Section Tittle -->
+                    <div class="col-xl-4 col-lg-5 col-md-5">
+                        <div class="section-tittle mb-30">
+                            <h2>Cafe Shop</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7 col-md-7">
+                        <div class="properties__button f-right">
+                            <!--Nav Button  -->
+                            <!--End Nav Button  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Nav Card -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- card one -->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                    <div class="single-product mb-60">
+                                        <div class="product-img">
+                                            <img src="@Html.DisplayFor(modelItem=>item.ImageUrl)" alt="@Html.DisplayFor(modelItem => item.ShopName)">
+
+                                        </div>
+                                        <div class="product-caption">
+
+                                            <h4>@Html.DisplayFor(modelItem => item.ShopName)</h4>
+
+                                            <div>
+                                                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Card two -->
+                <!-- End Nav Card -->
+            </div>
+        </section>
+
+
+    </main>
+</body>

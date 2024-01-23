@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<style>
+    #header {
+        background-color: black;
+    }
+    img{
+        
+        height:128px;
+    }
+</style>
+
+<body id="exhibit-body">
+
+    <main id="main">
+        <section id="about">
+            <div class="container">
+
+                <div class="row about-cols">
+                    <main>
+
+                        <!-- Category Area Start-->
+                        <section class="category-area section-padding30">
+                            <!-- Section Tittle -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="section-tittle text-center mb-85">
+                                        <h2>Admin</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30" style="margin-left: 100px;">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","Animals") ">
+                                            <div class="category-img figure">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/roundicons/100-free-solid/128/gorilla-icon.png")" style="width:128px;" class="figure-img img-fluid rounded" alt=" ">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Animals</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","Customers")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/96/User-Group-icon.png")" style="width:128px;" alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Customers</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","Departments")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/icons8/windows-8/128/Business-Department-icon.png")" style="width:128px;"  alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Departments</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","Events")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/flat-icons.com/flat/128/Circus-icon.png")" style="width:128px;"  alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Events</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Exhibits","Exhibits")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/flat-icons.com/flat/128/Circus-icon.png")" style="width:128px;" alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Exhibits</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","GiftShops")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/128/shop-icon.png")" style="width:128px;"  alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">GiftShops</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","ItemPurchases")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/icons8/ios7/128/Finance-Purchase-Order-icon.png")" style="width:128px;" alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Item Purchases</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","Items")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/chanut/role-playing/128/Item-Bag-icon.png")" style="width:128px;" alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Items</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","PrivateEvents")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/aha-soft/standard-christmas/128/New-Year-Party-icon.png")" style="width:128px;" alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Private Events</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","Staffs")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/72/Administrator-icon.png")" style="width:128px;" alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Staffs</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-6">
+                                    <div class="single-category mb-30">
+                                        <a style="text-decoration:none;color:black" href="@Url.Action("Index","TicketPurchases")">
+                                            <div class="category-img text-center">
+                                                <img src="@Url.Content("http://icons.iconarchive.com/icons/icons8/ios7/128/Cinema-Ticket-icon.png")"  style="width:128px;" alt="">
+                                                <div class="caption">
+                                                    <h3 style="text-align:center">Ticket Purchases</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>

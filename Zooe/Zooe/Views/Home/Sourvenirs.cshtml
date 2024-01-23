@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewData["Title"] = "Sourvenirs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+#header{
+    background-color:black;
+}
+</style>
+
+
+<body>
+    <main>
+        <!-- Category Area Start-->
+        <section class="category-area section-padding30">
+            <div class="container-fluid">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+
+
+                    
+                </nav>
+
+                <!-- Section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center mb-85">
+                            <h2>Shop by Category</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Shop","Items") ">
+                                <div class="category-img figure">
+                                    <img src="@Url.Content("~/Content/assets_store/img/categori/Food.jpg")" class="figure-img img-fluid rounded" alt=" ">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Food</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Sourvenirs","Home")">
+                                <div class="category-img text-center">
+                                    <img src="@Url.Content("~/Content/assets_store/img/categori/toy.jpg")" alt="">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Souvenirs</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="single-category mb-30">
+                            <a style="text-decoration:none;color:black" href="@Url.Action("Shop","GiftShops")">
+                                <div class="category-img text-center">
+                                    <img src="@Url.Content("~/Content/cafe.jpg")" style="height:376px" alt="">
+                                    <div class="caption">
+                                        <h3 style="text-align:center">Cafe</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="latest-product-area padding-bottom">
+            <div class="container">
+                <div class="row product-btn d-flex justify-content-end align-items-end">
+                    <!-- Section Tittle -->
+                    <div class="col-xl-4 col-lg-5 col-md-5">
+                        <div class="section-tittle mb-30">
+                            <h2>Products</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7 col-md-7">
+                        <div class="properties__button f-right">
+                            <!--Nav Button  -->
+                            <!--End Nav Button  -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Nav Card -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- card one -->
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-6">
+                                <div class="single-product mb-60">
+                                    <div class="product-img">
+                                        <img src="@Url.Content("~/Content/assets_store/img/categori/hamburger.jpg")" alt="">
+
+                                    </div>
+                                    <div class="product-caption">
+
+                                        <h4><a href="#">Zoo Meal Voucher</a></h4>
+
+                                        <div class="price">
+                                            <ul>
+                                                <li>$9.00</li>
+
+                                            </ul>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-6">
+                                <div class="single-product mb-60">
+                                    <div class="product-img">
+                                        <img src="@Url.Content("~/Content/assets_store/img/categori/toys.jpg") " style="width:360px;height:240px" alt="">
+                                    </div>
+                                    <div class="product-caption">
+
+                                        <h4><a href="#">Teddy Bears</a></h4>
+
+                                        <div class="price">
+                                            <ul>
+                                                <li>$20.00</li>
+
+                                            </ul>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-6">
+                                <div class="single-product mb-60">
+                                    <div class="product-img">
+                                        <img src="@Url.Content("~/Content/assets_store/img/categori/key.jpg")" style="width:360px;height:240px" alt="">
+                                        <div class="new-product">
+                                            <span>Sold Out</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-caption">
+
+                                        <h4><a href="#">Animal Key Chains</a></h4>
+
+                                        <div class="price">
+                                            <ul>
+                                                <li>$3.00</li>
+
+                                            </ul>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>

@@ -1,0 +1,88 @@
+@model Zooe.ViewModels.EditRoleViewModel
+
+@{
+    var roleLabel = Model.RoleName;
+    ViewBag.Title = "Edit Role";
+}
+
+<!DOCTYPE html>
+
+<>
+<head>
+        <title>Edit Role</title>
+    <style>
+            #header {
+                background-color: black;
+            }
+        </style>
+    
+    <title>Edit @roleLabel</title>
+</head>
+<html>
+
+<body id="exhibit-body">
+
+<main id="main">
+    <section id="about">
+        <div class="container">
+
+            <header class="section-header">
+                <h3>Edit @roleLabel</h3>
+            </header>
+            <form method="post" class="mt-3">
+                <div class="form-group row">
+                    <label asp-for="Id" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Id" disabled class="form-control">
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <label asp-for="RoleName" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="RoleName" class="form-control">
+                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                    </div>
+                </div>
+    
+                <div asp-validation-summary="All" class="text-danger"></div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a asp-action="ListRoles" class="btn btn-danger">Cancel</a>
+                    </div>
+                </div>
+    
+                <div class="form-group-row">
+                    <div class="col-sm-10">
+                        <h3>Users in @roleLabel:</h3>
+                    </div>
+        
+                    <div class="col-4">
+                        @if (Model.Users.Any())
+                        {
+                            foreach (var user in Model.Users)
+                            {
+                                <h5 class="title">@user</h5>
+                            }
+                        }
+                        else
+                        {
+                            <h5 class="title">There are no users in @roleLabel.</h5>
+                        }
+                    </div>
+        
+                    <div class="footer-info">
+                        <a asp-action="EditUsersInRole" asp-controller="Admin"
+                           asp-route-roleId="@Model.Id" class="btn btn-primary" style="width:auto">Add or Remove Users</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+</body>
+
+</html>
